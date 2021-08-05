@@ -8,7 +8,7 @@ use Ramsey\Uuid\Uuid;
 class Pokedex extends Model
 {
     protected $table = 'pokedex';
-    protected $incrementing = false;
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -17,5 +17,21 @@ class Pokedex extends Model
         static::creating(function ($model) {
             $model->id = Uuid::uuid4()->toString();
         });
+    }
+
+    protected $hidden = [
+        'id',
+        'created_at',
+        'updated_at',
+    ];
+
+    public function type_1()
+    {
+        return $this->belongsTo(Type::class, 'type_1');
+    }
+    
+    public function type_2()
+    {
+        return $this->belongsTo(Type::class, 'type_2');
     }
 }

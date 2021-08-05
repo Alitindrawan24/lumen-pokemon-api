@@ -1,17 +1,23 @@
 <?php
 
-/** @var \Laravel\Lumen\Routing\Router $router */
-
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
+$router->group(['prefix' => 'V1', 'namespace' => 'V1'], function () use ($router) {
+    $router->group(['prefix' => 'pokedex'], function () use ($router) {
+        $router->get('/', 'PokedexController@index');
+        $router->get('/{pokedex_number}', 'PokedexController@show');
+    });
+    $router->group(['prefix' => 'item'], function () use ($router) {
+        $router->get('/', 'ItemController@index');
+        $router->get('/{id}', 'ItemController@show');
+    });
+    $router->group(['prefix' => 'move'], function () use ($router) {
+        $router->get('/', 'MoveController@index');
+        $router->get('/{id}', 'MoveController@show');
+    });
+    $router->group(['prefix' => 'type'], function () use ($router) {
+        $router->get('/', 'TypeController@index');
+        $router->get('/{id}', 'TypeController@show');
+    });
+});
 
 $router->get('/', function () use ($router) {
     return $router->app->version();
