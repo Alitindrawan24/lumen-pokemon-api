@@ -5,13 +5,15 @@ namespace App\Http\Controllers\V1;
 use Exception;
 use App\Models\Move;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\MoveRequest;
+use App\Services\MoveService;
 
 class MoveController extends Controller
 {
-    public function index()
+    public function index(MoveRequest $request, MoveService $moveService)
     {
         try {
-            $data = Move::with('type')->get();
+            $data = $moveService->filterData($request);
 
             return response()->json([
                 'status' => true,
