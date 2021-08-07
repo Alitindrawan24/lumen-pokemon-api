@@ -1,7 +1,7 @@
 {
-    "name": "laravel/lumen",
-    "description": "The Laravel Lumen Framework.",
-    "keywords": ["framework", "laravel", "lumen"],
+    "name": "Pokemon API",
+    "description": "Pokemon API using Lumen",
+    "keywords": ["Pokemon API", "Pokedex API", "lumen"],
     "license": "MIT",
     "type": "project",
     "require": {
