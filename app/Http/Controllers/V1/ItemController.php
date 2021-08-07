@@ -5,13 +5,15 @@ namespace App\Http\Controllers\V1;
 use Exception;
 use App\Models\Item;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ItemRequest;
+use App\Services\ItemService;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(ItemRequest $request, ItemService $itemService)
     {
         try {
-            $data = Item::get();
+            $data = $itemService->filterData($request);
 
             return response()->json([
                 'status' => true,
