@@ -17,6 +17,10 @@ class Pokedex extends Model
         static::creating(function ($model) {
             $model->id = Uuid::uuid4()->toString();
         });
+
+        static::retrieved(function ($model) {
+            $model->image = url('assets/images/'.str_pad($model->pokedex_number,3,0,STR_PAD_LEFT).'.png');
+        });
     }
 
     protected $hidden = [
@@ -29,7 +33,7 @@ class Pokedex extends Model
     {
         return $this->belongsTo(Type::class, 'type_1');
     }
-    
+
     public function type_2()
     {
         return $this->belongsTo(Type::class, 'type_2');
